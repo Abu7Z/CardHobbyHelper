@@ -15,7 +15,7 @@ export class RadarSlotPopup {
               </label>
             </div>
             <label style="font-size: 12px; font-weight: bold; color: #555;">筛选关键词 (支持高级语法):</label>
-            <input type="search" class="filter-keywords" placeholder="例：科比 +特卡 -评级">
+            <input type="search" class="filter-keywords" placeholder="例：0次 +科比 +特卡 -评级">
             <div class="hint" style="background: #f8f9fa; padding: 8px; border-radius: 6px; margin-top: 6px; border: 1px dashed #e0e0e0;">
               <div style="margin-bottom: 4px; color: #666;">
                 <b>语法：</b>空格=或 | <span style="color:#4CAF50;">+=且</span> | <span style="color:#d32f2f;">-=排除</span>
