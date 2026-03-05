@@ -3,6 +3,12 @@
   "name": "卡淘猎手",
   "version": "1.0.0",
   "description": "专为卡迷打造的卡淘网页增强工具。",
+  "icons": {
+    "16": "assets/icon16.png",
+    "32": "assets/icon32.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
   "permissions": [
     "storage",
     "activeTab",
@@ -15,7 +21,13 @@
   ],
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "打开控制台"
+    "default_title": "打开控制台",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "32": "assets/icon32.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
   },
   "content_scripts": [
     {
