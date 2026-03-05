@@ -21,7 +21,7 @@ export class RadarSlotPopup {
                 <b>语法：</b>空格=或 | <span style="color:#4CAF50;">+=且</span> | <span style="color:#d32f2f;">-=排除</span>
               </div>
               <div style="color: #333;">
-                <b>例句：</b><code style="background: #e3f2fd; color: #1565c0; padding: 2px 4px; border-radius: 3px;">科比 +特卡 -评级</code><br>
+                <b>例句：</b><code style="background: #e3f2fd; color: #1565c0; padding: 2px 4px; border-radius: 3px;">0次 +科比 +特卡 -评级</code><br>
               </div>
             </div>
             <div style="text-align: right; margin-top: 12px;">
