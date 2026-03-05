@@ -12,7 +12,7 @@
 在商品列表页提供强大的关键词过滤与高亮功能。
 * **高级语法支持**：使用空格代表“或”，`+` 代表“必须包含”，`-` 代表“必须排除”。例如 `0次 +科比 +特卡 -评级`。
 * **快捷关注**：在列表页即可一键将目标卡片加入关注库，支持后台同步与静默刷新。
-* <img width="1280" height="800" alt="banner 1" src="https://github.com/user-attachments/assets/ca6250e8-e63c-446d-8020-4632093639ef" />
+<img width="1280" height="800" alt="banner 1" src="https://github.com/user-attachments/assets/ca6250e8-e63c-446d-8020-4632093639ef" />
 
 
 
