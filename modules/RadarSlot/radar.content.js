@@ -8,7 +8,7 @@ class RadarSlotContent {
         this.followedItemIds = new Set();                     // 已关注商品 ID 集合
         this.isSyncing = false;                                // 关注列表同步锁
         this.toastTimer = null;                                // Toast 防抖计时器
-        this.lastSyncTime = 0;                                 // 最后一次同步的时间戳
+        this.lastTargetCount = -1;
     }
 
     async init() {
@@ -31,6 +31,7 @@ class RadarSlotContent {
     onMessage(req, sender, sendResponse) {
         if (req.action === "updateConfig") {
             this.config = req.config;
+            this.lastTargetCount = -1;
             this.renderRadar();
         } else if (req.action === "refreshFollowUI") {
             chrome.storage.local.get('followedItemIds').then(res => {
@@ -107,10 +108,16 @@ class RadarSlotContent {
         });
 
         if (isActive && items.length > 0) {
-            if (this.toastTimer) clearTimeout(this.toastTimer);
-            this.toastTimer = setTimeout(() => {
-                window.ContentEngine.showToast(`📡 雷达扫描完毕：发现 <b style="color:#00E676;font-size:18px;margin:0 4px;">${targetCount}</b> 件目标卡片`);
-            }, 500);
+            if (this.lastTargetCount !== targetCount) {
+                this.lastTargetCount = targetCount;
+                
+                if (this.toastTimer) clearTimeout(this.toastTimer);
+                this.toastTimer = setTimeout(() => {
+                    window.ContentEngine.showToast(`📡 雷达扫描完毕：发现 <b style="color:#00E676;font-size:18px;margin:0 4px;">${targetCount}</b> 件目标卡片`);
+                }, 500);
+            }
+        } else {
+            this.lastTargetCount = -1; // 雷达关闭或没商品时，重置状态
         }
     }
 
