@@ -1,6 +1,6 @@
 # 卡淘猎手 (CardHobbyHelper)
 
-卡淘猎手(CardHobbyHelper)是一款中文卡淘(https://cardhobby.com.cn/)网页端增强浏览器辅助工具。本插件旨在通过优化前端界面的交互体验，帮助用户更高效地浏览和管理关注的卡片。
+卡淘猎手(CardHobbyHelper)是一款中文卡淘 (www.cardhobby.com.cn) 网页端增强浏览器辅助工具。本插件旨在通过优化前端界面的交互体验，帮助用户更高效地浏览和管理关注的卡片。
 
 ---
 
