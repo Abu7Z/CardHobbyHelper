@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>卡淘猎手 Pro - 运行日志</title>
+  <style>
+    body { background: #121212; color: #e0e0e0; font-family: "Consolas", "Microsoft YaHei", monospace; margin: 0; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
+    h2 { margin: 0; color: #00E676; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+    .btn { background: #333; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: background 0.2s ease, transform 0.1s ease; font-family: inherit; font-weight: bold; }
+    .btn:hover { background: #d32f2f; }
+    .btn:active { transform: scale(0.95); }
+    
+    .log-container { display: flex; flex-direction: column; gap: 10px; max-height: 85vh; overflow-y: auto; padding-right: 10px; }
+    /* 美化滚动条 */
+    .log-container::-webkit-scrollbar { width: 6px; }
+    .log-container::-webkit-scrollbar-track { background: #1e1e1e; border-radius: 4px; }
+    .log-container::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+    .log-container::-webkit-scrollbar-thumb:hover { background: #777; }
+    
+    .log-item { background: #1e1e1e; padding: 12px 16px; border-radius: 8px; border-left: 4px solid #555; display: flex; gap: 15px; align-items: flex-start; word-break: break-all; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s ease; }
+    .log-item:hover { transform: translateX(2px); }
+    .log-time { color: #888; font-size: 12px; white-space: nowrap; margin-top: 2px; font-weight: bold; }
+    .log-msg { font-size: 14px; line-height: 1.5; flex-grow: 1; }
+    
+    /* 日志级别色彩体系 */
+    .log-item.info { border-color: #2196F3; } .log-item.info .log-time { color: #2196F3; }
+    .log-item.success { border-color: #00E676; } .log-item.success .log-time { color: #00E676; }
+    .log-item.warn { border-color: #FF9800; background: rgba(255, 152, 0, 0.05); } .log-item.warn .log-time { color: #FF9800; }
+    .log-item.error { border-color: #f44336; background: rgba(244, 67, 54, 0.08); } .log-item.error .log-time { color: #f44336; }
+    
+    .empty-state { text-align: center; color: #666; padding: 60px 20px; font-style: italic; font-size: 15px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>📡 猎手运行日志 (Log Center)</h2>
+    <button class="btn" id="clearLogsBtn">🗑️ 清空所有日志</button>
+  </div>
+  <div class="log-container" id="logBox">
+    <div class="empty-state">读取中...</div>
+  </div>
+  <script src="logs.js"></script>
+</body>
+</html>

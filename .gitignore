@@ -1,0 +1,12 @@
+# 依赖与打包产物
+node_modules/
+dist/
+*.zip
+
+# 系统隐藏文件
+.DS_Store
+
+# 自动化构建工具与配置文件（不传 GitHub）
+build.js
+package.json
+package-lock.json

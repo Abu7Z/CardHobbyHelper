@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "卡淘猎手",
+  "version": "1.0.0",
+  "description": "专为卡迷打造的卡淘网页增强工具。",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "alarms"
+  ],
+  "host_permissions": [
+    "*://*.cardhobby.com.cn/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "打开控制台"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.cardhobby.com.cn/*"
+      ],
+      "css": [
+        "assets/base.css",
+        "modules/RadarSlot/radar.css",
+        "modules/BatchBidSlot/batch.css",
+        "modules/SniperSlot/sniper.css"
+      ],
+      "js": [
+        "core/config.js",
+        "core/Utils.content.js",
+        "core/ContentEngine.js",
+        "modules/RadarSlot/radar.content.js",
+        "modules/BatchBidSlot/batch.content.js",
+        "modules/SniperSlot/sniper.content.js",
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}

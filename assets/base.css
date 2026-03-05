@@ -1,0 +1,10 @@
+.helper-toast {
+    position: fixed; top: 30px; left: 50%; transform: translateX(-50%) translateY(-10px);
+    background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    color: white; padding: 12px 32px; border-radius: 8px; z-index: 999999;
+    font-size: 15px; font-weight: bold; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    text-align: center; border: 1px solid rgba(255,255,255,0.1);
+    font-family: "Microsoft YaHei", sans-serif;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.helper-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }

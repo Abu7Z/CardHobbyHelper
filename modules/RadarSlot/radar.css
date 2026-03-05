@@ -1,0 +1,27 @@
+/* 🌟 核心优化1：卡片过滤的柔和过渡动画，消除闪烁跳跃感 */
+.el-card.card-block {
+    transition: opacity 0.4s ease, filter 0.4s ease, border-color 0.4s ease !important;
+}
+
+.helper-card-active {
+    border: 2px solid #00E676 !important; 
+    border-radius: 6px !important; 
+    background-color: rgba(0, 230, 118, 0.03) !important;
+    opacity: 1 !important; 
+    position: relative; 
+    z-index: 10;
+}
+.helper-card-inactive { opacity: 0.5 !important; z-index: 1; filter: grayscale(20%); }
+
+/* 🌟 核心优化2：防背景干扰的毛玻璃与阴影 */
+.helper-follow-btn {
+    position: absolute; top: 10px; right: 10px; z-index: 99999; background: #c2185b;
+    color: white; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 4px;
+    cursor: pointer; transition: all 0.2s ease;
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.helper-follow-btn:hover { background: #ad1457; transform: scale(1.05); }
+.helper-follow-btn.processing { background: #FF9800; cursor: not-allowed; transform: none; }
+.helper-follow-btn.success { background: #4CAF50; border-color: rgba(255,255,255,0.4); }

@@ -1,0 +1,36 @@
+/* 压哨狙击控制模块 (Sniper Container) */
+.sniper-box-container {
+    margin-top: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    background: rgba(255, 193, 7, 0.05); padding: 10px; border-radius: 6px;
+    border: 1px solid rgba(255, 193, 7, 0.3); transition: background 0.2s ease, border-color 0.2s ease;
+}
+.sniper-box-container.locked { background: rgba(76, 175, 80, 0.08); border-color: rgba(76, 175, 80, 0.4); }
+
+.sniper-title { font-size: 12px; color: #d32f2f; font-weight: bold; }
+.sniper-box-container.locked .sniper-title { color: #2E7D32; }
+
+.sniper-price-input {
+    width: 80px; text-align: center; border: 1px solid #ccc; border-radius: 4px; padding: 4px 6px;
+    font-weight: bold; font-size: 13px; outline: none; transition: border-color 0.2s ease;
+}
+.sniper-price-input:focus { border-color: #FF9800; }
+.sniper-box-container.locked .sniper-price-input {
+    background: #f1f8e9; border-color: #a5d6a7; color: #2E7D32; pointer-events: none;
+}
+
+.sniper-add-btn {
+    color: white; border: none; border-radius: 4px; padding: 6px 14px; cursor: pointer;
+    font-size: 12px; font-weight: bold; background: #FF9800; transition: background 0.2s ease;
+}
+.sniper-add-btn:hover { background: #F57C00; }
+.sniper-add-btn.locked { background: #9E9E9E; }
+.sniper-add-btn.locked:hover { background: #757575; }
+
+.helper-card-melted { opacity: 0.3 !important; pointer-events: none !important; filter: grayscale(100%); }
+
+@keyframes shake-error {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+.shake-error { animation: shake-error 0.3s ease-in-out; border-color: #f44336 !important; background-color: #ffebee !important; }

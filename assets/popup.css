@@ -1,0 +1,20 @@
+body { width: 260px; padding: 15px; font-family: "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #333; margin: 0; }
+h3 { margin-top: 0; color: #d32f2f; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; font-size: 16px; display: flex; align-items: center; justify-content: space-between; }
+.badge { background: #00E676; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+.control-group { margin: 15px 0; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.switch-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.switch-label { font-size: 14px; font-weight: 600; }
+.ios-switch { position: relative; display: inline-block; width: 46px; height: 26px; }
+.ios-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e0e0e0; transition: .3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 26px; }
+.slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+input:checked + .slider { background-color: #00E676; }
+input:checked + .slider:before { transform: translateX(20px); }
+input[type="text"], input[type="search"] { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; margin-top: 5px; background: #fafafa; transition: border-color 0.3s, box-shadow 0.3s; }
+input[type="text"]:focus, input[type="search"]:focus { border-color: #00E676; outline: none; background: #fff; box-shadow: 0 0 0 2px rgba(0,230,118,0.2); }
+/* 优化原生 search 清除按钮的指针 */
+input[type="search"]::-webkit-search-cancel-button { cursor: pointer; }
+.hint { font-size: 12px; color: #999; margin-top: 8px; line-height: 1.4; }
+.status { font-size: 12px; color: #888; margin-top: 15px; text-align: center; border-top: 1px solid #eee; padding-top: 10px;}
+.btn-primary { width: 100%; margin-top: 15px; background: #2196F3; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; transition: background 0.2s; }
+.btn-dark { width: 100%; margin-top: 10px; background: #333; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; transition: background 0.2s; }
