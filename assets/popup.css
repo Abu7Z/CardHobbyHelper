@@ -1,20 +1,199 @@
-body { width: 260px; padding: 15px; font-family: "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #333; margin: 0; }
-h3 { margin-top: 0; color: #d32f2f; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; font-size: 16px; display: flex; align-items: center; justify-content: space-between; }
-.badge { background: #00E676; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; }
-.control-group { margin: 15px 0; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-.switch-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.switch-label { font-size: 14px; font-weight: 600; }
-.ios-switch { position: relative; display: inline-block; width: 46px; height: 26px; }
-.ios-switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e0e0e0; transition: .3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 26px; }
-.slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-input:checked + .slider { background-color: #00E676; }
-input:checked + .slider:before { transform: translateX(20px); }
-input[type="text"], input[type="search"] { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; margin-top: 5px; background: #fafafa; transition: border-color 0.3s, box-shadow 0.3s; }
-input[type="text"]:focus, input[type="search"]:focus { border-color: #00E676; outline: none; background: #fff; box-shadow: 0 0 0 2px rgba(0,230,118,0.2); }
+/* ==========================================================================
+   弹出窗口基础样式
+   ========================================================================== */
+
+/* 全局布局设置 */
+body { 
+  width: 260px; /* 固定宽度 */
+  padding: 15px; /* 内边距 */
+  font-family: "Microsoft YaHei", sans-serif; /* 字体设置 */
+  background: #fbfbfb; /* 背景色 */
+  color: #333; /* 文字颜色 */
+  margin: 0; /* 重置边距 */
+}
+
+/* 标题样式 */
+h3 { 
+  margin-top: 0; /* 去除顶部边距 */
+  color: #d32f2f; /* 标题颜色 */
+  border-bottom: 2px solid #e0e0e0; /* 底部边框 */
+  padding-bottom: 10px; /* 底部内边距 */
+  font-size: 16px; /* 字体大小 */
+  display: flex; /* Flex布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: space-between; /* 两端对齐 */
+}
+
+/* 标签样式 */
+.badge { 
+  background: #00E676; /* 背景色 */
+  color: white; /* 文字颜色 */
+  padding: 2px 6px; /* 内边距 */
+  border-radius: 4px; /* 圆角 */
+  font-size: 10px; /* 字体大小 */
+}
+
+/* ==========================================================================
+   控制组与开关样式
+   ========================================================================== */
+
+/* 控制组容器 */
+.control-group { 
+  margin: 15px 0; /* 上下外边距 */
+  background: white; /* 背景色 */
+  padding: 15px; /* 内边距 */
+  border-radius: 8px; /* 圆角 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* 阴影效果 */
+}
+
+/* 开关行布局 */
+.switch-row { 
+  display: flex; /* Flex布局 */
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中 */
+  margin-bottom: 12px; /* 底部外边距 */
+}
+
+/* 开关标签 */
+.switch-label { 
+  font-size: 14px; /* 字体大小 */
+  font-weight: 600; /* 字体粗细 */
+}
+
+/* iOS风格开关容器 */
+.ios-switch { 
+  position: relative; /* 相对定位 */
+  display: inline-block; /* 行内块级元素 */
+  width: 46px; /* 宽度 */
+  height: 26px; /* 高度 */
+}
+
+/* 隐藏原生输入框 */
+.ios-switch input { 
+  opacity: 0; /* 透明 */
+  width: 0; /* 宽度为0 */
+  height: 0; /* 高度为0 */
+}
+
+/* 开关滑块 */
+.slider { 
+  position: absolute; /* 绝对定位 */
+  cursor: pointer; /* 光标样式 */
+  top: 0; /* 顶部位置 */
+  left: 0; /* 左侧位置 */
+  right: 0; /* 右侧位置 */
+  bottom: 0; /* 底部位置 */
+  background-color: #e0e0e0; /* 背景色 */
+  transition: .3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 过渡效果 */
+  border-radius: 26px; /* 圆角 */
+}
+
+/* 开关滑块圆形按钮 */
+.slider:before { 
+  position: absolute; /* 绝对定位 */
+  content: ""; /* 内容为空 */
+  height: 20px; /* 高度 */
+  width: 20px; /* 宽度 */
+  left: 3px; /* 左侧位置 */
+  bottom: 3px; /* 底部位置 */
+  background-color: white; /* 背景色 */
+  transition: .3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 过渡效果 */
+  border-radius: 50%; /* 圆形 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 阴影效果 */
+}
+
+/* 开关选中状态 */
+input:checked + .slider { 
+  background-color: #00E676; /* 选中背景色 */
+}
+
+/* 开关选中时滑块位置 */
+input:checked + .slider:before { 
+  transform: translateX(20px); /* 向右移动 */
+}
+
+/* ==========================================================================
+   输入框样式
+   ========================================================================== */
+
+/* 文本和搜索输入框 */
+input[type="text"], input[type="search"] { 
+  width: 100%; /* 宽度100% */
+  box-sizing: border-box; /* 盒模型 */
+  padding: 10px; /* 内边距 */
+  border: 1px solid #ddd; /* 边框 */
+  border-radius: 6px; /* 圆角 */
+  font-size: 13px; /* 字体大小 */
+  margin-top: 5px; /* 顶部外边距 */
+  background: #fafafa; /* 背景色 */
+  transition: border-color 0.3s, box-shadow 0.3s; /* 过渡效果 */
+}
+
+/* 输入框聚焦状态 */
+input[type="text"]:focus, input[type="search"]:focus { 
+  border-color: #00E676; /* 边框颜色 */
+  outline: none; /* 去除默认轮廓 */
+  background: #fff; /* 背景色 */
+  box-shadow: 0 0 0 2px rgba(0,230,118,0.2); /* 聚焦阴影 */
+}
+
 /* 优化原生 search 清除按钮的指针 */
-input[type="search"]::-webkit-search-cancel-button { cursor: pointer; }
-.hint { font-size: 12px; color: #999; margin-top: 8px; line-height: 1.4; }
-.status { font-size: 12px; color: #888; margin-top: 15px; text-align: center; border-top: 1px solid #eee; padding-top: 10px;}
-.btn-primary { width: 100%; margin-top: 15px; background: #2196F3; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; transition: background 0.2s; }
-.btn-dark { width: 100%; margin-top: 10px; background: #333; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; transition: background 0.2s; }
+input[type="search"]::-webkit-search-cancel-button { 
+  cursor: pointer; /* 光标样式 */
+}
+
+/* ==========================================================================
+   辅助文本和状态样式
+   ========================================================================== */
+
+/* 提示文本 */
+.hint { 
+  font-size: 12px; /* 字体大小 */
+  color: #999; /* 文字颜色 */
+  margin-top: 8px; /* 顶部外边距 */
+  line-height: 1.4; /* 行高 */
+}
+
+/* 状态文本 */
+.status { 
+  font-size: 12px; /* 字体大小 */
+  color: #888; /* 文字颜色 */
+  margin-top: 15px; /* 顶部外边距 */
+  text-align: center; /* 文本居中 */
+  border-top: 1px solid #eee; /* 顶部边框 */
+  padding-top: 10px; /* 顶部内边距 */
+}
+
+/* ==========================================================================
+   按钮样式
+   ========================================================================== */
+
+/* 主要按钮 */
+.btn-primary { 
+  width: 100%; /* 宽度100% */
+  margin-top: 15px; /* 顶部外边距 */
+  background: #2196F3; /* 背景色 */
+  color: white; /* 文字颜色 */
+  border: none; /* 去除边框 */
+  padding: 10px; /* 内边距 */
+  border-radius: 6px; /* 圆角 */
+  cursor: pointer; /* 光标样式 */
+  font-weight: bold; /* 字体粗细 */
+  font-size: 13px; /* 字体大小 */
+  transition: background 0.2s; /* 过渡效果 */
+}
+
+/* 暗色按钮 */
+.btn-dark { 
+  width: 100%; /* 宽度100% */
+  margin-top: 10px; /* 顶部外边距 */
+  background: #333; /* 背景色 */
+  color: white; /* 文字颜色 */
+  border: none; /* 去除边框 */
+  padding: 10px; /* 内边距 */
+  border-radius: 6px; /* 圆角 */
+  cursor: pointer; /* 光标样式 */
+  font-weight: bold; /* 字体粗细 */
+  font-size: 13px; /* 字体大小 */
+  transition: background 0.2s; /* 过渡效果 */
+}
