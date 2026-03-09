@@ -186,40 +186,73 @@ class RadarSlotContent {
     }
 
     /**
-     * 自动同步关注列表
-     * 拉取关注页面解析已关注 ID，更新本地缓存
+     * 自动同步关注列表（支持多页链式抓取）
+     * 解决关注卡片跨页导致的雷达数据不同步问题，并内置防风控限流机制
+     * @param {boolean} force - 是否强制跳过节流限制（用于控制台手动触发）
      */
     async autoSyncFollowList(force = false) {
         if (this.isSyncing) return;
 
-        // 增加 30 秒缓存节流，防封控（除非是控制台手动强制同步）
-        if (!force && Date.now() - this.lastSyncTime < 30000) {
+        // 30秒缓存节流：防止用户频繁切换标签页导致的高频无意义同步
+        if (!force && Date.now() - (this.lastSyncTime || 0) < 30000) {
             return;
         }
 
         this.isSyncing = true;
         try {
-            const response = await fetch('/market/followcard');
-            this.lastSyncTime = Date.now();
-            const html = await response.text();
-
-            const regex = /deleteatt\((\d+)/g;
             const ids = new Set();
-            let match;
-            while ((match = regex.exec(html)) !== null) ids.add(match[1]);
+            let page = 1;
+            const maxPages = 5; // 安全阈值：最多向下同步 5 页（约100个商品），防止触发 WAF 防火墙封禁
+            
+            // 开始链式翻页抓取
+            while (page <= maxPages) {
+                const response = await fetch(`/market/followcard?pageindex=${page}`);
+                const html = await response.text();
 
+                // 提取本页所有已关注商品的 ID
+                const regex = /deleteatt\((\d+)/g;
+                let match;
+                let countThisPage = 0;
+                
+                while ((match = regex.exec(html)) !== null) {
+                    ids.add(match[1]);
+                    countThisPage++;
+                }
+
+                // 边界判断：如果当前页未提取到任何 ID，说明已触达实际尾页，提前终止循环
+                if (countThisPage === 0) break;
+                
+                page++;
+                
+                // 防风控延迟：模拟人类翻页行为，随机停顿 300ms ~ 500ms，避免并发请求爆破
+                if (page <= maxPages) {
+                    await new Promise(r => setTimeout(r, 300 + Math.random() * 200));
+                }
+            }
+
+            // 更新内存态与本地持久化缓存
             const idArray = Array.from(ids);
             this.followedItemIds = new Set(idArray);
             await chrome.storage.local.set({ followedItemIds: idArray });
+            this.lastSyncTime = Date.now();
 
+            // 若雷达处于启用状态，则清除旧 UI 并重新渲染页面关注按钮的选中状态
             if (this.config.enabled) {
                 document.querySelectorAll('.helper-follow-btn').forEach(btn => btn.remove());
                 this.renderRadar();
             }
-            chrome.runtime.sendMessage({ action: "writeLog", type: 'success', msg: `🔄 [关注雷达] 关注库已静默校准，当前关注库共 ${idArray.length} 件。` });
+            
+            // 记录日志，输出实际扫描深度与最终同步数量
+            chrome.runtime.sendMessage({ 
+                action: "writeLog", 
+                type: 'success', 
+                msg: `🔄 [关注雷达] 关注库已静默校准（深度扫描至第 ${page - 1} 页），当前库共 ${idArray.length} 件。` 
+            });
+            
         } catch (err) {
-            chrome.runtime.sendMessage({ action: "writeLog", type: 'error', msg: `❌ [网络波动] 关注雷达拉取关注失败。` });
+            chrome.runtime.sendMessage({ action: "writeLog", type: 'error', msg: `❌ [网络波动] 关注雷达多页拉取失败。` });
         } finally {
+            // 释放同步锁
             setTimeout(() => { this.isSyncing = false; }, 1000);
         }
     }
