@@ -14,8 +14,8 @@ const CONFIG = {
     SCOUT_WAKEUP_RANDOM_MS: 5000,   // 侦查闹钟的随机漂移量（毫秒）
     
     // 开火参数配置
-    SNIPER_TRIGGER_SEC_MIN: 3,      // 最小触发倒计时（秒）
-    SNIPER_TRIGGER_SEC_MAX: 4,      // 最大触发倒计时（秒）
+    SNIPER_TRIGGER_SEC_MIN: 2,      // 最小触发倒计时（秒）
+    SNIPER_TRIGGER_SEC_MAX: 3,      // 最大触发倒计时（秒）
     SNIPER_FIRE_DELAY_MS: 150       // 填入出价与提交动作间的 DOM 渲染延迟（毫秒）
 };
 
